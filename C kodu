@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int a=5;
+    int temp;
+    int n[a][a];				
+    for(int i=0;i<a;i++){			//satirlari siralar
+        for(int j=0;j<a;j++){
+            n[i][j]=rand()%41+a;
+
+            int min=n[i][j];
+            for(int k=0;k<j;k++){
+                if(n[i][k]>min){
+                    min=n[i][k];
+
+                    temp=n[i][k];
+                    n[i][k]=n[i][j];
+                    n[i][j]=temp;
+                }
+            }
+        }
+    }
+    int tm;
+    for(int i=0;i<a;i++){			//sutunlari siralar
+        for(int j=0;j<a;j++){
+            int mi=n[j][i];
+            for(int k=0;k<a;k++){
+                if(mi<n[k][j]){
+                    mi=n[k][j];
+
+                    tm=n[k][j];
+                    n[k][j]=n[j][i];
+                    n[j][i]=tm;
+                }
+            }
+        }
+    }
+    for(int i=0;i<a;i++){
+        printf("\n");
+        for(int j=0;j<a;j++)
+            printf("%d ",n[i][j]);
+    }
+
+    return 0;
+}
